@@ -18,6 +18,16 @@
     background-size: cover;
 }
 
+#lobby{
+    background: url('../resources/img/lobby.png') no-repeat center center;
+    background-size: cover;
+}
+
+#police{
+    background: url('../resources/img/police.png') no-repeat center center;
+    background-size: cover;
+}
+
 @font-face {
     font-family: 'Cassia';
     src: url('../resources/fonts/Cassia.ttf') format('truetype');
@@ -43,16 +53,74 @@ body {
     display: flex;
     flex-direction: column; /* Aligne les éléments verticalement */
     align-items: center; /* Centre les éléments horizontalement */
-    gap: 40px; /* Espace de 20px entre chaque élément */
+    gap: 20px; /* Espace de 20px entre chaque élément */
 }
 
 /* Logo dans l'en-tête */
 #logo {
     display: block;
     margin: 0 auto;
-    max-width: 30%;
+    max-width: 20%;
     height: auto;
 }
+
+/* GAME SELECTION CONTAINER */
+
+#game-container {
+    transform: scale(0.6);
+    transform-origin: top; /* Keeps scaling consistent from top-left */
+    margin-bottom: -50px;
+}
+
+/* Conteneur pour les modes de jeu */
+#gamemodeSelector {
+    margin: 5px auto; /* Centre la div et ajoute de l'espace */
+    padding: 20px;
+    position: relative; /* Positionnement correct */
+    text-align: center; /* Centre les éléments */
+}
+
+#gamemodeSelector::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 110%;
+    height: 30px; /* Adjust thickness */
+    background-color: #2781b2;
+    clip-path: polygon(0% 50%, 7% 0%, 93% 0%, 100% 50%, 93% 100%, 7% 100%);
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Style des icônes */
+#gamemodeSelector a {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+}
+
+#gamemodeSelector img {
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    filter: drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.6)); /* Drop shadow for depth */
+}
+
+/* Hover effect */
+#gamemodeSelector img:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 0 0 6px #ffc31d; 
+    filter: drop-shadow(6px 10px 10px rgba(0, 0, 0, 0.8));
+}
+
+/* Selected image */
+#gamemodeSelector img.selected {
+    transform: scale(1.05) translateY(-5px);
+    filter: drop-shadow(6px 10px 10px rgba(0, 0, 0, 0.8));
+}
+
+
 
 
 /******************************************************************************************/
@@ -64,7 +132,7 @@ body {
     padding: 20px;
     border: 5px solid white; /* Bordure blanche */
     border-radius: 10px; /* Coins arrondis */
-    max-width: 600px;
+    max-width: 700px;
     background-image: 
         radial-gradient(circle at center, #2781b2 0.25rem, transparent 0), /* Points avec un centre transparent */
         radial-gradient(circle at center, #2781b2 0.25rem, #338ebf 0); /* Dégradé de couleur */
@@ -83,6 +151,19 @@ body {
 /* Style des labels */
 #groupFilters label {
     font-size: 16px;
+    color: white; /* Texte en blanc */
+    margin-right: 15px;
+    margin-bottom: 15px; /* Espacement entre les éléments */
+    display: inline-block;
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
+    padding: 10px; /* Ajoute un peu de padding pour un meilleur espacement */
+    transition: color 0.3s ease; /* Transition fluide pour la couleur */
+}
+
+/* Style des labels */
+#groupFilters h2 {
+    font-size: 17.5px;
     color: white; /* Texte en blanc */
     margin-right: 15px;
     margin-bottom: 15px; /* Espacement entre les éléments */
@@ -133,13 +214,17 @@ body {
 }
 */
 
+#hint-container {
+    transform: scale(0.8);
+    transform-origin: top; /* Keeps scaling consistent from top-left */
+}
+
 #hints {
     background-color: white; /* Fond blanc */
     padding: 20px;
     position: relative;
     border: 5px solid #328CBD; /* Bordure plus fine */
     outline: 5px solid white; /* Bordure blanche interne */
-    
     max-width: 600px; /* Limite la largeur */
     width: fit-content; /* S'ajuste au contenu sans dépasser max-width */
     margin: 0 auto; /* Centre le bloc */
@@ -266,6 +351,14 @@ body {
 /* Style des images */
 .hint-image {
     filter: brightness(0);
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.hint-image-clear {
     width: 100%;
     max-width: 200px;
     height: auto;
@@ -494,3 +587,34 @@ img {
 .hidden { 
     display: none; 
 }
+
+ul, ol {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+
+
+/* Animation d'apparition en fondu pour le résultat final */
+#finalresult {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Ajout d'une bordure et d'un fond légèrement coloré selon le résultat */
+#finalresult.win {
+    background-color: rgba(144, 238, 144, 0.9); /* Vert clair */
+    border: 3px solid green;
+}
+
+#finalresult.lose {
+    background-color: rgba(255, 99, 71, 0.9); /* Rouge clair */
+    border: 3px solid red;
+}
+
