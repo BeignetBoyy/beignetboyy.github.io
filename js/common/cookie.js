@@ -38,6 +38,7 @@ function setupStreakCookie(name){
 }
 
 export async function loadHistory() {
+    /* ON MET TOUT EN COMMENTAIRE PLUS DE COOKIES SUR HISTORIQUE
     resetAttemptedNames();
     let cookieAttempts = readJsonCookie(cookieName);
     //console.log("Cookie Attempts:", cookieAttempts);
@@ -86,7 +87,7 @@ export async function loadHistory() {
         filteredList.forEach(attempt => {
             validateGuessFunction(attempt, true);
         });
-    }
+    }*/
 }
 
 ////////
