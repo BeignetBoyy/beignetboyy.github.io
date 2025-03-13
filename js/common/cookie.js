@@ -17,7 +17,9 @@ export function setCookieName(newCookieName){
 }
 
 export function updateAttemptsCookie() {
+    /*
     setCookie(cookieName, encodeURIComponent(JSON.stringify(attemptedNames)));
+    */
 }
 
 //console.log(streaks);
